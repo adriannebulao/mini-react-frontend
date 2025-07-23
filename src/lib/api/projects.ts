@@ -6,7 +6,13 @@ import type {
   UpdateProjectInput,
 } from '@/types'
 
-export const getProjects = () => request<Project[]>('/projects')
+export const getProjects = async (): Promise<Project[]> => {
+  const response = await request<{ statusCode: number; body: string }>(
+    '/projects',
+  )
+  const parsed = JSON.parse(response.body) as Project[]
+  return parsed
+}
 
 export const getProjectById = (id: string) =>
   request<Project>(`/projects/${id}`)

@@ -6,7 +6,13 @@ import type {
   UpdateEmployeeInput,
 } from '@/types'
 
-export const getEmployees = () => request<Employee[]>('/employees')
+export const getEmployees = async (): Promise<Employee[]> => {
+  const response = await request<{ statusCode: number; body: string }>(
+    '/employees',
+  )
+  const parsed = JSON.parse(response.body) as Employee[]
+  return parsed
+}
 
 export const getEmployeeById = (id: string) =>
   request<Employee>(`/employees/${id}`)
