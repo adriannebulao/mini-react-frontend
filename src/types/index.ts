@@ -6,9 +6,14 @@ export type Employee = {
   end_date?: string
   positions: string[]
   tech_stack: string[]
+  created_at: string
+  updated_at: string
 }
 
-export type CreateEmployeeInput = Omit<Employee, 'id'>
+export type CreateEmployeeInput = Omit<
+  Employee,
+  'id' | 'created_at' | 'updated_at'
+>
 export type UpdateEmployeeInput = Partial<CreateEmployeeInput>
 
 export type Project = {
@@ -18,9 +23,14 @@ export type Project = {
   start_date: string
   end_date?: string
   tech_stack: string[]
+  created_at: string
+  updated_at: string
 }
 
-export type CreateProjectInput = Omit<Project, 'id'>
+export type CreateProjectInput = Omit<
+  Project,
+  'id' | 'created_at' | 'updated_at'
+>
 export type UpdateProjectInput = Partial<CreateProjectInput>
 
 export type Assignment = {
