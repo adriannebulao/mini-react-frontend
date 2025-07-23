@@ -22,3 +22,22 @@ export type Project = {
 
 export type CreateProjectInput = Omit<Project, 'id'>
 export type UpdateProjectInput = Partial<CreateProjectInput>
+
+export type Assignment = {
+  employeeId: string
+  projectId: string
+  role: string
+  assigned_date: string
+}
+
+export type AssignmentInput = {
+  employeeId: string
+  projectId: string
+  role: string
+  assigned_date: string
+}
+
+export type UnassignInput = {
+  employeeId: string
+  projectId: string
+}

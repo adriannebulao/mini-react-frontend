@@ -1,5 +1,6 @@
 import { request } from './api'
 import type {
+  Assignment,
   CreateEmployeeInput,
   Employee,
   UpdateEmployeeInput,
@@ -26,3 +27,6 @@ export const deleteEmployee = (id: string) =>
   request<void>(`/employees/${id}`, {
     method: 'DELETE',
   })
+
+export const getEmployeeProjects = (id: string) =>
+  request<Assignment[]>(`/employees/${id}/projects`)

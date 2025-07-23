@@ -1,5 +1,10 @@
 import { request } from './api'
-import type { CreateProjectInput, Project, UpdateProjectInput } from '@/types'
+import type {
+  Assignment,
+  CreateProjectInput,
+  Project,
+  UpdateProjectInput,
+} from '@/types'
 
 export const getProjects = () => request<Project[]>('/projects')
 
@@ -22,3 +27,6 @@ export const deleteProject = (id: string) =>
   request<void>(`/projects/${id}`, {
     method: 'DELETE',
   })
+
+export const getProjectEmployees = (id: string) =>
+  request<Assignment[]>(`/projects/${id}/employees`)
