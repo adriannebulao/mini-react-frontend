@@ -16,7 +16,6 @@ function RouteComponent() {
   } = useQuery<Employee[]>({
     queryKey: ['employees'],
     queryFn: getEmployees,
-    staleTime: Infinity,
   })
 
   const { openModal } = useModalStore()

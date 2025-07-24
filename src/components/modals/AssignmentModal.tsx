@@ -59,24 +59,26 @@ export function AssignmentModal() {
           ? 'Employee assigned to project'
           : 'Employee added to project',
       )
+
       if (isEmployeeToProject) {
+        const employeeId = employee?.PK?.replace('EMP#', '')
         queryClient.invalidateQueries({
-          queryKey: [
-            'employees',
-            employee?.PK?.replace('EMP#', ''),
-            'projects',
-          ],
+          queryKey: ['employees', employeeId, 'projects'],
         })
+        queryClient.invalidateQueries({ queryKey: ['employees', employeeId] })
       }
+
       if (isProjectToEmployee) {
+        const projectId = project?.PK?.replace('PROJ#', '')
         queryClient.invalidateQueries({
-          queryKey: [
-            'projects',
-            project?.PK?.replace('PROJ#', ''),
-            'employees',
-          ],
+          queryKey: ['projects', projectId, 'employees'],
         })
+        queryClient.invalidateQueries({ queryKey: ['projects', projectId] })
       }
+
+      queryClient.invalidateQueries({ queryKey: ['projects'] })
+      queryClient.invalidateQueries({ queryKey: ['employees'] })
+
       closeModal()
     },
     onError: () => toast.error('Failed to create assignment'),

@@ -49,6 +49,7 @@ export function UnassignModal() {
         queryClient.invalidateQueries({
           queryKey: ['employees', employeeId, 'projects'],
         })
+        queryClient.invalidateQueries({ queryKey: ['employees', employeeId] })
       }
 
       if (isUnassignProject) {
@@ -56,7 +57,11 @@ export function UnassignModal() {
         queryClient.invalidateQueries({
           queryKey: ['projects', projectId, 'employees'],
         })
+        queryClient.invalidateQueries({ queryKey: ['projects', projectId] })
       }
+
+      queryClient.invalidateQueries({ queryKey: ['projects'] })
+      queryClient.invalidateQueries({ queryKey: ['employees'] })
 
       closeModal()
     },

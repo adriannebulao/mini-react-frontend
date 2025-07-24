@@ -18,7 +18,6 @@ function RouteComponent() {
   } = useQuery<Employee>({
     queryKey: ['employees', employeeId],
     queryFn: () => getEmployeeById(employeeId),
-    staleTime: Infinity,
   })
 
   const {
@@ -28,7 +27,6 @@ function RouteComponent() {
   } = useQuery<Assignment[]>({
     queryKey: ['employees', employeeId, 'projects'],
     queryFn: () => getEmployeeProjects(employeeId),
-    staleTime: Infinity,
   })
 
   const { openModal } = useModalStore()
