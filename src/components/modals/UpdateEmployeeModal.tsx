@@ -93,7 +93,7 @@ export function UpdateEmployeeModal() {
               name: form.name,
               email: form.email,
               start_date: form.start_date,
-              end_date: form.end_date.trim() === '' ? '' : form.end_date,
+              end_date: form.end_date || null,
               positions,
               tech_stack,
             }
