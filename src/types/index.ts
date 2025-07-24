@@ -34,10 +34,12 @@ export type CreateProjectInput = Omit<
 export type UpdateProjectInput = Partial<CreateProjectInput>
 
 export type Assignment = {
-  employeeId: string
-  projectId: string
+  GSI1PK: string
+  PK: string
   role: string
-  assigned_date: string
+  assignedAt: string
+  SK: string
+  GSI1SK: string
 }
 
 export type AssignmentInput = {
