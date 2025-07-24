@@ -14,25 +14,54 @@ export const getEmployees = async (): Promise<Employee[]> => {
   return parsed
 }
 
-export const getEmployeeById = (id: string) =>
-  request<Employee>(`/employees/${id}`)
+export const getEmployeeById = async (id: string): Promise<Employee> => {
+  const response = await request<{ statusCode: number; body: string }>(
+    `/employees/${id}`,
+  )
+  const parsed = JSON.parse(response.body) as Employee
+  return parsed
+}
 
-export const createEmployee = (data: CreateEmployeeInput) =>
-  request<Employee>('/employees', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  })
+export const createEmployee = async (
+  data: CreateEmployeeInput,
+): Promise<Employee> => {
+  const response = await request<{ statusCode: number; body: string }>(
+    '/employees',
+    {
+      method: 'POST',
+      body: JSON.stringify(data),
+    },
+  )
+  const parsed = JSON.parse(response.body) as Employee
+  return parsed
+}
 
-export const updateEmployee = (id: string, data: UpdateEmployeeInput) =>
-  request<Employee>(`/employees/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(data),
-  })
+export const updateEmployee = async (
+  id: string,
+  data: UpdateEmployeeInput,
+): Promise<Employee> => {
+  const response = await request<{ statusCode: number; body: string }>(
+    `/employees/${id}`,
+    {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    },
+  )
+  const parsed = JSON.parse(response.body) as Employee
+  return parsed
+}
 
 export const deleteEmployee = (id: string) =>
   request<void>(`/employees/${id}`, {
     method: 'DELETE',
   })
 
-export const getEmployeeProjects = (id: string) =>
-  request<Assignment[]>(`/employees/${id}/projects`)
+export const getEmployeeProjects = async (
+  id: string,
+): Promise<Assignment[]> => {
+  const response = await request<{ statusCode: number; body: string }>(
+    `/employees/${id}/projects`,
+  )
+  const parsed = JSON.parse(response.body) as Assignment[]
+  return parsed
+}
