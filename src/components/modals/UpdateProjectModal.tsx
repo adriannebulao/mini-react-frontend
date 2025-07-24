@@ -5,6 +5,8 @@ import { toast } from 'sonner'
 import { useEffect, useState } from 'react'
 import type { Project, UpdateProjectInput } from '@/types'
 
+type UpdateProjectModalData = Project
+
 export function UpdateProjectModal() {
   const { isOpen, modal, closeModal } = useModalStore()
   const queryClient = useQueryClient()
@@ -16,10 +18,9 @@ export function UpdateProjectModal() {
     tech_stack: '',
   })
 
-  // Populate form with project data when modal opens
   useEffect(() => {
     if (isOpen && modal?.type === 'updateProject' && modal.data) {
-      const project = modal.data as Project
+      const project = modal.data as UpdateProjectModalData
       setForm({
         name: project.name,
         description: project.description || '',
@@ -44,9 +45,15 @@ export function UpdateProjectModal() {
     { id: string; data: UpdateProjectInput }
   >({
     mutationFn: ({ id, data }) => updateProject(id, data),
-    onSuccess: () => {
+    onSuccess: (_updatedProject) => {
       toast.success('Project updated successfully')
       queryClient.invalidateQueries({ queryKey: ['projects'] })
+      queryClient.invalidateQueries({
+        queryKey: ['projects', projectId.replace('PROJ#', '')],
+      })
+      queryClient.invalidateQueries({
+        queryKey: ['projects', projectId.replace('PROJ#', ''), 'employees'],
+      })
       closeModal()
     },
     onError: () => toast.error('Failed to update project'),

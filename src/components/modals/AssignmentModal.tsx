@@ -7,6 +7,14 @@ import { toast } from 'sonner'
 import { useEffect, useState } from 'react'
 import type { Project, Employee, AssignmentInput } from '@/types'
 
+type AssignEmployeeToProjectData = {
+  employee: Employee
+}
+
+type AssignProjectToEmployeeData = {
+  project: Project
+}
+
 export function AssignmentModal() {
   const { isOpen, modal, closeModal } = useModalStore()
   const queryClient = useQueryClient()
@@ -14,8 +22,12 @@ export function AssignmentModal() {
   const isEmployeeToProject = modal?.type === 'assignEmployeeToProject'
   const isProjectToEmployee = modal?.type === 'assignProjectToEmployee'
 
-  const employee = isEmployeeToProject ? modal?.data?.employee : null
-  const project = isProjectToEmployee ? modal?.data?.project : null
+  const employee = isEmployeeToProject
+    ? (modal?.data as AssignEmployeeToProjectData)?.employee
+    : null
+  const project = isProjectToEmployee
+    ? (modal?.data as AssignProjectToEmployeeData)?.project
+    : null
 
   const [selectedEntityId, setSelectedEntityId] = useState('')
   const [role, setRole] = useState('')

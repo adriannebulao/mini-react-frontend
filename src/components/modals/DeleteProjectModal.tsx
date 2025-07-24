@@ -16,6 +16,11 @@ export function DeleteProjectModal() {
     onSuccess: () => {
       toast.success('Project deleted')
       queryClient.invalidateQueries({ queryKey: ['projects'] })
+      if (projectId) {
+        queryClient.invalidateQueries({
+          queryKey: ['projects', 'employees'],
+        })
+      }
       closeModal()
     },
     onError: () => toast.error('Failed to delete project'),

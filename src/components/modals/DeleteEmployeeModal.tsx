@@ -16,6 +16,11 @@ export function DeleteEmployeeModal() {
     onSuccess: () => {
       toast.success('Employee deleted')
       queryClient.invalidateQueries({ queryKey: ['employees'] })
+      if (employeeId) {
+        queryClient.invalidateQueries({
+          queryKey: ['projects', 'employees'],
+        })
+      }
       closeModal()
     },
     onError: () => toast.error('Failed to delete employee'),

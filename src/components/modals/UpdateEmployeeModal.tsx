@@ -5,6 +5,8 @@ import { toast } from 'sonner'
 import { useEffect, useState } from 'react'
 import type { Employee, UpdateEmployeeInput } from '@/types'
 
+type UpdateEmployeeModalData = Employee
+
 export function UpdateEmployeeModal() {
   const { isOpen, modal, closeModal } = useModalStore()
   const queryClient = useQueryClient()
@@ -19,7 +21,7 @@ export function UpdateEmployeeModal() {
 
   useEffect(() => {
     if (isOpen && modal?.type === 'updateEmployee' && modal.data) {
-      const employee = modal.data as Employee
+      const employee = modal.data as UpdateEmployeeModalData
       setForm({
         name: employee.name,
         email: employee.email,
@@ -45,9 +47,15 @@ export function UpdateEmployeeModal() {
     { id: string; data: UpdateEmployeeInput }
   >({
     mutationFn: ({ id, data }) => updateEmployee(id, data),
-    onSuccess: () => {
+    onSuccess: (_updatedEmployee) => {
       toast.success('Employee updated successfully')
       queryClient.invalidateQueries({ queryKey: ['employees'] })
+      queryClient.invalidateQueries({
+        queryKey: ['employees', employeeId.replace('EMP#', '')],
+      })
+      queryClient.invalidateQueries({
+        queryKey: ['employees', employeeId.replace('EMP#', ''), 'projects'],
+      })
       closeModal()
     },
     onError: () => toast.error('Failed to update employee'),
