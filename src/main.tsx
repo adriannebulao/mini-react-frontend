@@ -12,6 +12,7 @@ import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
 import { CreateProjectModal } from './components/modals/CreateProjectModal.tsx'
 import { UpdateEmployeeModal } from './components/modals/UpdateEmployeeModal.tsx'
+import { UpdateProjectModal } from './components/modals/UpdateProjectModal.tsx'
 
 // Create a new router instance
 const router = createRouter({
@@ -43,6 +44,7 @@ if (rootElement && !rootElement.innerHTML) {
         <CreateEmployeeModal />
         <CreateProjectModal />
         <UpdateEmployeeModal />
+        <UpdateProjectModal />
         <Toaster position="top-right" richColors closeButton></Toaster>
       </QueryClientProvider>
     </StrictMode>,
