@@ -57,6 +57,13 @@ function RouteComponent() {
                 </div>
 
                 <div className="flex gap-2">
+                  <Link
+                    to="/employees/$employeeId"
+                    params={{ employeeId: emp.PK.replace('EMP#', '') }}
+                    className="px-3 py-1 text-blue-600 hover:text-blue-700"
+                  >
+                    View Details
+                  </Link>
                   <button
                     onClick={() =>
                       openModal({ type: 'updateEmployee', data: emp })
@@ -65,13 +72,15 @@ function RouteComponent() {
                   >
                     Edit
                   </button>
-                  <Link
-                    to="/employees/$employeeId"
-                    params={{ employeeId: emp.PK.replace('EMP#', '') }}
-                    className="px-3 py-1 text-blue-600 hover:text-blue-700"
+
+                  <button
+                    onClick={() =>
+                      openModal({ type: 'deleteEmployee', data: emp })
+                    }
+                    className="text-red-600 hover:text-red-800 text-sm"
                   >
-                    View Details
-                  </Link>
+                    Delete
+                  </button>
                 </div>
               </div>
             </li>

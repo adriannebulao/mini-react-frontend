@@ -13,6 +13,7 @@ import reportWebVitals from './reportWebVitals.ts'
 import { CreateProjectModal } from './components/modals/CreateProjectModal.tsx'
 import { UpdateEmployeeModal } from './components/modals/UpdateEmployeeModal.tsx'
 import { UpdateProjectModal } from './components/modals/UpdateProjectModal.tsx'
+import { DeleteEmployeeModal } from './components/modals/DeleteEmployeeModal.tsx'
 
 // Create a new router instance
 const router = createRouter({
@@ -45,6 +46,7 @@ if (rootElement && !rootElement.innerHTML) {
         <CreateProjectModal />
         <UpdateEmployeeModal />
         <UpdateProjectModal />
+        <DeleteEmployeeModal />
         <Toaster position="top-right" richColors closeButton></Toaster>
       </QueryClientProvider>
     </StrictMode>,
