@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import logo from '../logo.svg'
 
 export const Route = createFileRoute('/')({
@@ -14,25 +14,21 @@ function App() {
           className="h-[40vmin] pointer-events-none animate-[spin_20s_linear_infinite]"
           alt="logo"
         />
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
-        </p>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
+        <h1 className="text-3xl font-bold mb-8">Mini React Frontend</h1>
+        <div className="flex gap-6 mb-8">
+          <Link
+            to="/employees"
+            className="px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+          >
+            Employees
+          </Link>
+          <Link
+            to="/projects"
+            className="px-6 py-3 bg-green-500 text-white rounded hover:bg-green-600 transition"
+          >
+            Projects
+          </Link>
+        </div>
       </header>
     </div>
   )
