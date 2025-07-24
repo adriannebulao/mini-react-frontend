@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as EmployeesIndexRouteImport } from './routes/employees/index'
+import { Route as ProjectsProjectIdIndexRouteImport } from './routes/projects/$projectId/index'
+import { Route as EmployeesEmployeeIdIndexRouteImport } from './routes/employees/$employeeId/index'
 import { Route as ProjectsProjectIdEmployeesRouteImport } from './routes/projects/$projectId/employees'
 import { Route as EmployeesEmployeeIdProjectsRouteImport } from './routes/employees/$employeeId/projects'
 
@@ -30,6 +32,17 @@ const EmployeesIndexRoute = EmployeesIndexRouteImport.update({
   path: '/employees/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsProjectIdIndexRoute = ProjectsProjectIdIndexRouteImport.update({
+  id: '/projects/$projectId/',
+  path: '/projects/$projectId/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmployeesEmployeeIdIndexRoute =
+  EmployeesEmployeeIdIndexRouteImport.update({
+    id: '/employees/$employeeId/',
+    path: '/employees/$employeeId/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProjectsProjectIdEmployeesRoute =
   ProjectsProjectIdEmployeesRouteImport.update({
     id: '/projects/$projectId/employees',
@@ -49,6 +62,8 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsIndexRoute
   '/employees/$employeeId/projects': typeof EmployeesEmployeeIdProjectsRoute
   '/projects/$projectId/employees': typeof ProjectsProjectIdEmployeesRoute
+  '/employees/$employeeId': typeof EmployeesEmployeeIdIndexRoute
+  '/projects/$projectId': typeof ProjectsProjectIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -56,6 +71,8 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsIndexRoute
   '/employees/$employeeId/projects': typeof EmployeesEmployeeIdProjectsRoute
   '/projects/$projectId/employees': typeof ProjectsProjectIdEmployeesRoute
+  '/employees/$employeeId': typeof EmployeesEmployeeIdIndexRoute
+  '/projects/$projectId': typeof ProjectsProjectIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -64,6 +81,8 @@ export interface FileRoutesById {
   '/projects/': typeof ProjectsIndexRoute
   '/employees/$employeeId/projects': typeof EmployeesEmployeeIdProjectsRoute
   '/projects/$projectId/employees': typeof ProjectsProjectIdEmployeesRoute
+  '/employees/$employeeId/': typeof EmployeesEmployeeIdIndexRoute
+  '/projects/$projectId/': typeof ProjectsProjectIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -73,6 +92,8 @@ export interface FileRouteTypes {
     | '/projects'
     | '/employees/$employeeId/projects'
     | '/projects/$projectId/employees'
+    | '/employees/$employeeId'
+    | '/projects/$projectId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -80,6 +101,8 @@ export interface FileRouteTypes {
     | '/projects'
     | '/employees/$employeeId/projects'
     | '/projects/$projectId/employees'
+    | '/employees/$employeeId'
+    | '/projects/$projectId'
   id:
     | '__root__'
     | '/'
@@ -87,6 +110,8 @@ export interface FileRouteTypes {
     | '/projects/'
     | '/employees/$employeeId/projects'
     | '/projects/$projectId/employees'
+    | '/employees/$employeeId/'
+    | '/projects/$projectId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,6 +120,8 @@ export interface RootRouteChildren {
   ProjectsIndexRoute: typeof ProjectsIndexRoute
   EmployeesEmployeeIdProjectsRoute: typeof EmployeesEmployeeIdProjectsRoute
   ProjectsProjectIdEmployeesRoute: typeof ProjectsProjectIdEmployeesRoute
+  EmployeesEmployeeIdIndexRoute: typeof EmployeesEmployeeIdIndexRoute
+  ProjectsProjectIdIndexRoute: typeof ProjectsProjectIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -120,6 +147,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmployeesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/$projectId/': {
+      id: '/projects/$projectId/'
+      path: '/projects/$projectId'
+      fullPath: '/projects/$projectId'
+      preLoaderRoute: typeof ProjectsProjectIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/employees/$employeeId/': {
+      id: '/employees/$employeeId/'
+      path: '/employees/$employeeId'
+      fullPath: '/employees/$employeeId'
+      preLoaderRoute: typeof EmployeesEmployeeIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/$projectId/employees': {
       id: '/projects/$projectId/employees'
       path: '/projects/$projectId/employees'
@@ -143,6 +184,8 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsIndexRoute: ProjectsIndexRoute,
   EmployeesEmployeeIdProjectsRoute: EmployeesEmployeeIdProjectsRoute,
   ProjectsProjectIdEmployeesRoute: ProjectsProjectIdEmployeesRoute,
+  EmployeesEmployeeIdIndexRoute: EmployeesEmployeeIdIndexRoute,
+  ProjectsProjectIdIndexRoute: ProjectsProjectIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
