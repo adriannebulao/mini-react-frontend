@@ -1,4 +1,4 @@
-import type { Employee, Project } from '@/types'
+import type { Employee, Project, Assignment } from '@/types'
 import { create } from 'zustand'
 
 type ModalType =
@@ -10,6 +10,14 @@ type ModalType =
   | { type: 'deleteProject'; data: Project }
   | { type: 'assignEmployeeToProject'; data: { employee: Employee } }
   | { type: 'assignProjectToEmployee'; data: { project: Project } }
+  | {
+      type: 'unassignEmployee'
+      data: { employee: Employee; assignment: Assignment }
+    }
+  | {
+      type: 'unassignProject'
+      data: { project: Project; assignment: Assignment }
+    }
 
 type ModalState = {
   isOpen: boolean

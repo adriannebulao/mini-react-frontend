@@ -52,15 +52,17 @@ function RouteComponent() {
         >
           Back to Projects
         </Link>
-        <h1 className="text-2xl font-bold">{project.name}</h1>
-        <button
-          onClick={() =>
-            openModal({ type: 'assignProjectToEmployee', data: { project } })
-          }
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Add Employee
-        </button>
+        <div className="flex items-center justify-between mb-4">
+          <h1 className="text-2xl font-bold">{project.name}</h1>
+          <button
+            onClick={() =>
+              openModal({ type: 'assignProjectToEmployee', data: { project } })
+            }
+            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors flex items-center gap-1"
+          >
+            <span>Add Employee</span>
+          </button>
+        </div>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -114,33 +116,48 @@ function RouteComponent() {
               <ul className="divide-y divide-gray-200">
                 {employees.map((assignment) => (
                   <li key={assignment.PK} className="py-2">
-                    {' '}
-                    <Link
-                      to="/employees/$employeeId"
-                      params={{
-                        employeeId: assignment.PK.replace('EMP#', ''),
-                      }}
-                      className="text-blue-500 hover:text-blue-600 flex items-center justify-between"
-                    >
-                      <span className="flex flex-col">
-                        <span>
-                          Employee: {assignment.PK.replace('EMP#', '')}
-                        </span>
-                        <span className="text-sm text-gray-600">
-                          Role: {assignment.role}
-                        </span>
-                      </span>
-                    </Link>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Since{' '}
-                      {new Date(assignment.assignedAt).toLocaleDateString(
-                        'en-PH',
-                        {
-                          year: 'numeric',
-                          month: 'long',
-                        },
-                      )}
-                    </p>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <Link
+                          to="/employees/$employeeId"
+                          params={{
+                            employeeId: assignment.PK.replace('EMP#', ''),
+                          }}
+                          className="text-blue-500 hover:text-blue-600 flex items-center justify-between"
+                        >
+                          <span className="flex flex-col">
+                            <span>
+                              Employee: {assignment.PK.replace('EMP#', '')}
+                            </span>
+                            <span className="text-sm text-gray-600">
+                              Role: {assignment.role}
+                            </span>
+                          </span>
+                        </Link>
+                        <p className="text-sm text-gray-500 mt-1">
+                          Since{' '}
+                          {new Date(assignment.assignedAt).toLocaleDateString(
+                            'en-PH',
+                            {
+                              year: 'numeric',
+                              month: 'long',
+                            },
+                          )}
+                        </p>
+                      </div>
+
+                      <button
+                        onClick={() =>
+                          openModal({
+                            type: 'unassignProject',
+                            data: { project, assignment },
+                          })
+                        }
+                        className="text-red-600 hover:text-red-800 text-sm"
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>

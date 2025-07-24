@@ -16,6 +16,7 @@ import { UpdateProjectModal } from './components/modals/UpdateProjectModal.tsx'
 import { DeleteEmployeeModal } from './components/modals/DeleteEmployeeModal.tsx'
 import { DeleteProjectModal } from './components/modals/DeleteProjectModal.tsx'
 import { AssignmentModal } from './components/modals/AssignmentModal.tsx'
+import { UnassignModal } from './components/modals/UnassignModal.tsx'
 
 // Create a new router instance
 const router = createRouter({
@@ -51,6 +52,7 @@ if (rootElement && !rootElement.innerHTML) {
         <DeleteEmployeeModal />
         <DeleteProjectModal />
         <AssignmentModal />
+        <UnassignModal />
         <Toaster position="top-right" richColors closeButton></Toaster>
       </QueryClientProvider>
     </StrictMode>,
