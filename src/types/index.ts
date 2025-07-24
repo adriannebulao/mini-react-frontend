@@ -12,7 +12,7 @@ export type Employee = {
 
 export type CreateEmployeeInput = Omit<
   Employee,
-  'id' | 'created_at' | 'updated_at'
+  'PK' | 'created_at' | 'updated_at'
 >
 export type UpdateEmployeeInput = Partial<CreateEmployeeInput>
 
@@ -29,7 +29,7 @@ export type Project = {
 
 export type CreateProjectInput = Omit<
   Project,
-  'id' | 'created_at' | 'updated_at'
+  'PK' | 'created_at' | 'updated_at'
 >
 export type UpdateProjectInput = Partial<CreateProjectInput>
 
