@@ -2,6 +2,7 @@ import { getProjects } from '@/lib/api/projects'
 import type { Project } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { useModalStore } from '@/stores/useModalStore' // Add this import
 
 export const Route = createFileRoute('/projects/')({
   component: RouteComponent,
@@ -18,6 +19,8 @@ function RouteComponent() {
     staleTime: Infinity,
   })
 
+  const { openModal } = useModalStore()
+
   if (isLoading) return <p className="p-4">Loading projects...</p>
   if (error) return <p className="p-4 text-red-500">Error loading projects.</p>
 
@@ -25,6 +28,12 @@ function RouteComponent() {
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Projects</h1>
+        <button
+          onClick={() => openModal({ type: 'createProject' })}
+          className="bg-green-600 text-white px-4 py-2 rounded"
+        >
+          Add Project
+        </button>
       </div>
 
       {(projects?.length ?? 0) === 0 ? (
