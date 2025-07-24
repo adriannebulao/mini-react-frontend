@@ -48,7 +48,7 @@ function RouteComponent() {
                 </div>
                 <Link
                   to="/employees/$employeeId"
-                  params={{ employeeId: emp.PK }}
+                  params={{ employeeId: emp.PK.replace('EMP#', '') }}
                   className="px-3 py-1 text-blue-500 hover:text-blue-600 flex items-center gap-1"
                 >
                   View Details
