@@ -55,13 +55,24 @@ function RouteComponent() {
                     })}
                   </p>
                 </div>
-                <Link
-                  to="/employees/$employeeId"
-                  params={{ employeeId: emp.PK.replace('EMP#', '') }}
-                  className="px-3 py-1 text-blue-500 hover:text-blue-600 flex items-center gap-1"
-                >
-                  View Details
-                </Link>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() =>
+                      openModal({ type: 'updateEmployee', data: emp })
+                    }
+                    className="px-3 py-1 text-blue-600 hover:text-blue-700"
+                  >
+                    Edit
+                  </button>
+                  <Link
+                    to="/employees/$employeeId"
+                    params={{ employeeId: emp.PK.replace('EMP#', '') }}
+                    className="px-3 py-1 text-blue-600 hover:text-blue-700"
+                  >
+                    View Details
+                  </Link>
+                </div>
               </div>
             </li>
           ))}

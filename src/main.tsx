@@ -11,6 +11,7 @@ import { routeTree } from './routeTree.gen'
 import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
 import { CreateProjectModal } from './components/modals/CreateProjectModal.tsx'
+import { UpdateEmployeeModal } from './components/modals/UpdateEmployeeModal.tsx'
 
 // Create a new router instance
 const router = createRouter({
@@ -41,6 +42,7 @@ if (rootElement && !rootElement.innerHTML) {
         <RouterProvider router={router} />
         <CreateEmployeeModal />
         <CreateProjectModal />
+        <UpdateEmployeeModal />
         <Toaster position="top-right" richColors closeButton></Toaster>
       </QueryClientProvider>
     </StrictMode>,
