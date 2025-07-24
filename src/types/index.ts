@@ -1,5 +1,5 @@
 export type Employee = {
-  pk: string
+  PK: string
   name: string
   email: string
   start_date: string
@@ -17,7 +17,7 @@ export type CreateEmployeeInput = Omit<
 export type UpdateEmployeeInput = Partial<CreateEmployeeInput>
 
 export type Project = {
-  pk: string
+  PK: string
   name: string
   description?: string
   start_date: string
