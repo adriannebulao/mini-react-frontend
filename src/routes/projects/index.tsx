@@ -50,7 +50,7 @@ function RouteComponent() {
                 </div>
                 <Link
                   to="/projects/$projectId"
-                  params={{ projectId: project.PK }}
+                  params={{ projectId: project.PK.replace('PROJ#', '') }}
                   className="px-3 py-1 text-blue-500 hover:text-blue-600 flex items-center gap-1"
                 >
                   View Details
