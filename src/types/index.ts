@@ -3,7 +3,7 @@ export type Employee = {
   name: string
   email: string
   start_date: string
-  end_date?: string
+  end_date?: string | null
   positions: string[]
   tech_stack: string[]
   created_at: string
@@ -19,9 +19,9 @@ export type UpdateEmployeeInput = Partial<CreateEmployeeInput>
 export type Project = {
   PK: string
   name: string
-  description?: string
+  description?: string | null
   start_date: string
-  end_date?: string
+  end_date?: string | null
   tech_stack: string[]
   created_at: string
   updated_at: string
