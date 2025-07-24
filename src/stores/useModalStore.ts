@@ -8,6 +8,8 @@ type ModalType =
   | { type: 'updateProject'; data: Project }
   | { type: 'deleteEmployee'; data: Employee }
   | { type: 'deleteProject'; data: Project }
+  | { type: 'assignEmployeeToProject'; data: { employee: Employee } }
+  | { type: 'assignProjectToEmployee'; data: { project: Project } }
 
 type ModalState = {
   isOpen: boolean

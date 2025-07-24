@@ -2,6 +2,7 @@ import { getProjectById, getProjectEmployees } from '@/lib/api/projects'
 import type { Assignment, Project } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { useModalStore } from '@/stores/useModalStore'
 
 export const Route = createFileRoute('/projects/$projectId')({
   component: RouteComponent,
@@ -30,6 +31,8 @@ function RouteComponent() {
     staleTime: Infinity,
   })
 
+  const { openModal } = useModalStore()
+
   if (projectLoading || employeesLoading) {
     return <p className="p-4">Loading project details...</p>
   }
@@ -50,6 +53,14 @@ function RouteComponent() {
           Back to Projects
         </Link>
         <h1 className="text-2xl font-bold">{project.name}</h1>
+        <button
+          onClick={() =>
+            openModal({ type: 'assignProjectToEmployee', data: { project } })
+          }
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Add Employee
+        </button>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -102,7 +113,8 @@ function RouteComponent() {
             {employees && employees.length > 0 ? (
               <ul className="divide-y divide-gray-200">
                 {employees.map((assignment) => (
-                  <li key={assignment.SK} className="py-2">
+                  <li key={assignment.PK} className="py-2">
+                    {' '}
                     <Link
                       to="/employees/$employeeId"
                       params={{
