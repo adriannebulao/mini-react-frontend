@@ -3,7 +3,7 @@ import type { Assignment, Project } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { Link, createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/projects/$projectId/')({
+export const Route = createFileRoute('/projects/$projectId')({
   component: RouteComponent,
 })
 
