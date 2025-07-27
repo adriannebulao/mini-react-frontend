@@ -4,7 +4,7 @@ import { request } from './api'
 export const assignEmployeeToProject = async (
   data: AssignmentInput,
 ): Promise<void> => {
-  await request<{ statusCode: number; body: string }>('/assignments', {
+  await request<void>('/assignments', {
     method: 'POST',
     body: JSON.stringify(data),
   })
@@ -14,7 +14,7 @@ export const assignEmployeeToProject = async (
 export const unassignEmployeeFromProject = async (
   data: UnassignInput,
 ): Promise<void> => {
-  await request<{ statusCode: number; body: string }>('/assignments', {
+  await request<void>('/assignments', {
     method: 'DELETE',
     body: JSON.stringify(data),
   })

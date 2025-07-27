@@ -7,48 +7,34 @@ import type {
 } from '@/types'
 
 export const getProjects = async (): Promise<Project[]> => {
-  const response = await request<{ statusCode: number; body: string }>(
-    '/projects',
-  )
-  const parsed = JSON.parse(response.body) as Project[]
-  return parsed
+  const response = await request<Project[]>('/projects')
+  return response
 }
 
 export const getProjectById = async (id: string): Promise<Project> => {
-  const response = await request<{ statusCode: number; body: string }>(
-    `/projects/${id}`,
-  )
-  const parsed = JSON.parse(response.body) as Project
-  return parsed
+  const response = await request<Project>(`/projects/${id}`)
+  return response
 }
 
 export const createProject = async (
   data: CreateProjectInput,
 ): Promise<Project> => {
-  const response = await request<{ statusCode: number; body: string }>(
-    '/projects',
-    {
-      method: 'POST',
-      body: JSON.stringify(data),
-    },
-  )
-  const parsed = JSON.parse(response.body) as Project
-  return parsed
+  const response = await request<Project>('/projects', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+  return response
 }
 
 export const updateProject = async (
   id: string,
   data: UpdateProjectInput,
 ): Promise<Project> => {
-  const response = await request<{ statusCode: number; body: string }>(
-    `/projects/${id}`,
-    {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    },
-  )
-  const parsed = JSON.parse(response.body) as Project
-  return parsed
+  const response = await request<Project>(`/projects/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
+  return response
 }
 
 export const deleteProject = (id: string) =>
@@ -59,9 +45,6 @@ export const deleteProject = (id: string) =>
 export const getProjectEmployees = async (
   id: string,
 ): Promise<Assignment[]> => {
-  const response = await request<{ statusCode: number; body: string }>(
-    `/projects/${id}/employees`,
-  )
-  const parsed = JSON.parse(response.body) as Assignment[]
-  return parsed
+  const response = await request<Assignment[]>(`/projects/${id}/employees`)
+  return response
 }
