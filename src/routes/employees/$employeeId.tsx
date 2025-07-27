@@ -144,9 +144,7 @@ function RouteComponent() {
                           className="text-blue-500 hover:text-blue-600 flex items-center justify-between"
                         >
                           <span className="flex flex-col">
-                            <span>
-                              Project: {assignment.GSI1PK.replace('PROJ#', '')}
-                            </span>
+                            <span>{assignment.projectName}</span>
                             <span className="text-sm text-gray-600">
                               Role: {assignment.role}
                             </span>

@@ -124,9 +124,7 @@ function RouteComponent() {
                           className="text-blue-500 hover:text-blue-600 flex items-center justify-between"
                         >
                           <span className="flex flex-col">
-                            <span>
-                              Employee: {assignment.PK.replace('EMP#', '')}
-                            </span>
+                            <span>{assignment.employeeName}</span>
                             <span className="text-sm text-gray-600">
                               Role: {assignment.role}
                             </span>

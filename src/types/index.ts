@@ -40,6 +40,8 @@ export type Assignment = {
   assignedAt: string
   SK: string
   GSI1SK: string
+  employeeName?: string | null
+  projectName?: string | null
 }
 
 export type AssignmentInput = {
