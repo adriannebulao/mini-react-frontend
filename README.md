@@ -11,7 +11,7 @@ This project is a web-based CRUD interface for managing employees, projects, and
 - **Zustand** - A lightweight state management library ideal for managing global or UI-specific state with minimal boilerplate
 - **Tailwind CSS** - Offers rapid UI development using utility-first classes for clean, responsive styling
 
-## Setup Guide
+## Development Setup Guide
 
 1. Clone the repository
 
@@ -34,7 +34,7 @@ On UNIX:
 cp .env.sample .env
 ```
 
-Set `VITE_API_BASE_URL` value in `.env` with the output URL from deployed backend (via `npm run deploy` or `npx cdk deploy`).
+Set `VITE_API_BASE_URL` value in `.env` with the output URL from deployed backend (via `npm run deploy:backend`).
 
 3. Install dependencies
 
@@ -54,7 +54,7 @@ The development server should now be running at http://localhost:3000/
 
 Press `CTRL + C` in the terminal running Vite
 
-## Development Notes
+## Development & Deployment Notes
 
 - Useful commands:
   - `npm run dev` start the development server
