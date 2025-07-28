@@ -45,7 +45,7 @@ export function UnassignModal() {
       toast.success('Assignment removed successfully')
 
       if (isUnassignEmployee) {
-        const employeeId = employeeData?.employee.PK.replace('EMP#', '')
+        const employeeId = employeeData?.employee.id
         queryClient.invalidateQueries({
           queryKey: ['employees', employeeId, 'projects'],
         })
@@ -53,7 +53,7 @@ export function UnassignModal() {
       }
 
       if (isUnassignProject) {
-        const projectId = projectData?.project.PK.replace('PROJ#', '')
+        const projectId = projectData?.project.id
         queryClient.invalidateQueries({
           queryKey: ['projects', projectId, 'employees'],
         })
@@ -73,16 +73,16 @@ export function UnassignModal() {
   }
 
   const employeeId = isUnassignEmployee
-    ? employeeData!.employee.PK.replace('EMP#', '')
-    : assignment.PK.replace('EMP#', '')
+    ? employeeData!.employee.id
+    : assignment.projectId
 
   const projectId = isUnassignEmployee
     ? assignment.GSI1PK.replace('PROJ#', '')
-    : projectData!.project.PK.replace('PROJ#', '')
+    : projectData!.project.id
 
   const employeeName = isUnassignEmployee
     ? employeeData!.employee.name
-    : `Employee ${assignment.PK.replace('EMP#', '')}`
+    : `Employee ${assignment.employeeId}`
 
   const projectName = isUnassignEmployee
     ? `Project ${assignment.GSI1PK.replace('PROJ#', '')}`

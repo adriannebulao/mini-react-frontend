@@ -9,7 +9,7 @@ export function DeleteEmployeeModal() {
   const queryClient = useQueryClient()
 
   const employee = modal?.type === 'deleteEmployee' ? modal.data : null
-  const employeeId = employee?.PK?.replace('EMP#', '')
+  const employeeId = employee?.id
 
   const deleteMutation = useMutation<void, Error, string>({
     mutationFn: (id) => deleteEmployee(id),

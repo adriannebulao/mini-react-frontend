@@ -40,7 +40,7 @@ function RouteComponent() {
       ) : (
         <ul className="divide-y divide-gray-200">
           {projects?.map((project) => (
-            <li key={project.PK} className="py-4">
+            <li key={project.id} className="py-4">
               <div className="flex justify-between items-center">
                 <div className="space-y-1">
                   <h2 className="font-semibold text-lg">{project.name}</h2>
@@ -59,7 +59,7 @@ function RouteComponent() {
                 <div className="flex gap-2">
                   <Link
                     to="/projects/$projectId"
-                    params={{ projectId: project.PK.replace('PROJ#', '') }}
+                    params={{ projectId: project.id }}
                     className="px-3 py-1 text-green-600 hover:text-green-700"
                   >
                     View Details

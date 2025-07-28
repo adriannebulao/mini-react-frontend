@@ -67,7 +67,7 @@ export function UpdateEmployeeModal() {
 
   if (!isOpen || modal?.type !== 'updateEmployee' || !modal.data) return null
 
-  const employeeId = modal.data.PK
+  const employeeId = modal.data.id
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -101,9 +101,12 @@ export function UpdateEmployeeModal() {
               name: form.name,
               email: form.email,
               start_date: form.start_date,
-              end_date: form.end_date || null,
               positions,
               tech_stack,
+            }
+
+            if (form.end_date && form.end_date.trim() !== '') {
+              payload.end_date = form.end_date
             }
 
             updateMutation.mutate({

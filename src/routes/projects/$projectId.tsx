@@ -113,13 +113,13 @@ function RouteComponent() {
             {employees && employees.length > 0 ? (
               <ul className="divide-y divide-gray-200">
                 {employees.map((assignment) => (
-                  <li key={assignment.PK} className="py-2">
+                  <li key={assignment.employeeId} className="py-2">
                     <div className="flex justify-between items-start">
                       <div>
                         <Link
                           to="/employees/$employeeId"
                           params={{
-                            employeeId: assignment.PK.replace('EMP#', ''),
+                            employeeId: assignment.employeeId,
                           }}
                           className="text-blue-500 hover:text-blue-600 flex items-center justify-between"
                         >
@@ -132,7 +132,7 @@ function RouteComponent() {
                         </Link>
                         <p className="text-sm text-gray-500 mt-1">
                           Since{' '}
-                          {new Date(assignment.assignedAt).toLocaleDateString(
+                          {new Date(assignment.assigned_at).toLocaleDateString(
                             'en-PH',
                             {
                               year: 'numeric',

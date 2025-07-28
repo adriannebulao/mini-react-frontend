@@ -9,7 +9,7 @@ export function DeleteProjectModal() {
   const queryClient = useQueryClient()
 
   const project = modal?.type === 'deleteProject' ? modal.data : null
-  const projectId = project?.PK?.replace('PROJ#', '')
+  const projectId = project?.id
 
   const deleteMutation = useMutation<void, Error, string>({
     mutationFn: (id) => deleteProject(id),

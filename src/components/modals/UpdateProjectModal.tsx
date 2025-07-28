@@ -67,7 +67,7 @@ export function UpdateProjectModal() {
 
   if (!isOpen || modal?.type !== 'updateProject' || !modal.data) return null
 
-  const projectId = modal.data.PK
+  const projectId = modal.data.id
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -92,10 +92,16 @@ export function UpdateProjectModal() {
 
             const payload: UpdateProjectInput = {
               name: form.name,
-              description: form.description || null,
               start_date: form.start_date,
-              end_date: form.end_date || null,
               tech_stack,
+            }
+
+            if (form.description && form.description.trim() !== '') {
+              payload.description = form.description
+            }
+
+            if (form.end_date && form.end_date.trim() !== '') {
+              payload.end_date = form.end_date
             }
 
             updateMutation.mutate({

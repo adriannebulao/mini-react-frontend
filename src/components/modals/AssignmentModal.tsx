@@ -61,7 +61,7 @@ export function AssignmentModal() {
       )
 
       if (isEmployeeToProject) {
-        const employeeId = employee?.PK?.replace('EMP#', '')
+        const employeeId = employee?.id
         queryClient.invalidateQueries({
           queryKey: ['employees', employeeId, 'projects'],
         })
@@ -69,7 +69,7 @@ export function AssignmentModal() {
       }
 
       if (isProjectToEmployee) {
-        const projectId = project?.PK?.replace('PROJ#', '')
+        const projectId = project?.id
         queryClient.invalidateQueries({
           queryKey: ['projects', projectId, 'employees'],
         })
@@ -114,12 +114,8 @@ export function AssignmentModal() {
             e.preventDefault()
 
             const payload: AssignmentInput = {
-              employeeId: isEmployeeToProject
-                ? employee!.PK.replace('EMP#', '')
-                : selectedEntityId,
-              projectId: isEmployeeToProject
-                ? selectedEntityId
-                : project!.PK.replace('PROJ#', ''),
+              employeeId: isEmployeeToProject ? employee!.id : selectedEntityId,
+              projectId: isEmployeeToProject ? selectedEntityId : project!.id,
               role,
               assigned_date: new Date().toISOString(),
             }
@@ -141,10 +137,7 @@ export function AssignmentModal() {
               >
                 <option value="">Select a project</option>
                 {projects.map((project) => (
-                  <option
-                    key={project.PK}
-                    value={project.PK.replace('PROJ#', '')}
-                  >
+                  <option key={project.id} value={project.id}>
                     {project.name}
                   </option>
                 ))}
@@ -158,10 +151,7 @@ export function AssignmentModal() {
               >
                 <option value="">Select an employee</option>
                 {employees.map((employee) => (
-                  <option
-                    key={employee.PK}
-                    value={employee.PK.replace('EMP#', '')}
-                  >
+                  <option key={employee.id} value={employee.id}>
                     {employee.name}
                   </option>
                 ))}

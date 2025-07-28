@@ -40,7 +40,7 @@ function RouteComponent() {
       ) : (
         <ul className="divide-y divide-gray-200">
           {employees?.map((emp) => (
-            <li key={emp.PK} className="py-4">
+            <li key={emp.id} className="py-4">
               <div className="flex justify-between items-center">
                 <div className="space-y-1">
                   <h2 className="font-semibold text-lg">{emp.name}</h2>
@@ -58,7 +58,7 @@ function RouteComponent() {
                 <div className="flex gap-2">
                   <Link
                     to="/employees/$employeeId"
-                    params={{ employeeId: emp.PK.replace('EMP#', '') }}
+                    params={{ employeeId: emp.id }}
                     className="px-3 py-1 text-blue-600 hover:text-blue-700"
                   >
                     View Details
